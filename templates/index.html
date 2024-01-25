@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Talestyrt Assistent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Talestyrt AI Assistent</h1>
+    <br>
+    <div class="container">
+        <form action="/" method="post">
+            <button type="submit" name="record" id="recordButton">Start Opptak</button>
+        </form>
+        {% if response %}
+            <div id="response">{{ response }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

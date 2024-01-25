@@ -61,8 +61,6 @@ def record_audio(file_name):
     return file_path
 
 
-
-
 def transcribe_audio(file_name, text_output_file):
     client = OpenAI()
     
@@ -81,37 +79,3 @@ def transcribe_audio(file_name, text_output_file):
         file.write(transcript)
     print("Audio successfullt trascribed. Transcript:")
     print(transcript)
-    
-
-def response(file_name):
-    
-    file_path = os.path.join(text_outut_folder, file_name)
-    
-    with open(file_path, "r") as file:
-        question = file.read()
-
-    client = OpenAI()
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "Du er en talestyrt assistent som etter beste evne prøver å besvare spørsmål som du blir stilt."},
-            {"role": "user", "content": f"{question}"}
-        ]
-    )
-    output = response.choices[0].message.content
-    print("----------------------------")
-    print("GPT-3 response:")
-    print(output)
-    return output
-
-
-
-## Test
-test_audio_file = "test.wav"
-test_text_file = "transcript.txt"
-
-record_audio(test_audio_file)
-
-transcribe_audio(test_audio_file, test_text_file)
-
-response = response(test_text_file)
