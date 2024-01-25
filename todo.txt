@@ -1,0 +1,3 @@
+Basics
+- Sette opp test av whisper api med gpt-3.5
+- Legge ut en demo på nettet
