@@ -65,7 +65,9 @@ def record_audio(file_name):
 def transcribe_audio(file, text_output_file):
     client = OpenAI()
 
-    audio_file= open(test_file, "rb")
+    file_path = os.path.join(audio_output_folder, file)
+
+    audio_file= open(file_path, "rb")
     transcript = client.audio.transcriptions.create(
         model="whisper-1", 
         file=audio_file,
@@ -101,8 +103,10 @@ def response(filepath):
 
 
 ## Test
-test_file = "audio_files/test.wav"
+test_file = "test.wav"
 
-transcribe_audio(test_file)
+record_audio(test_file)
+
+transcribe_audio(test_file, "transcript.txt")
 
 response = response("transcript.txt")
