@@ -1,14 +1,18 @@
 import os
 from openai import OpenAI
 
+audio_input_folder = "audio_input"
+text_output_folder = "text_input"
+audio_output_folder = "static/audio_output"
 
-text_outut_folder = "text_files"
-if not os.path.exists(text_outut_folder):
-    os.makedirs(text_outut_folder)
+if not os.path.exists(text_output_folder):
+    os.makedirs(text_output_folder)
+if not os.path.exists(audio_output_folder):
+    os.makedirs(audio_output_folder)
 
 def response(file_name):
-    
-    file_path = os.path.join(text_outut_folder, file_name)
+
+    file_path = os.path.join(text_output_folder, file_name)
     
     with open(file_path, "r") as file:
         question = file.read()
@@ -21,8 +25,23 @@ def response(file_name):
             {"role": "user", "content": f"{question}"}
         ]
     )
+    
     output = response.choices[0].message.content
     print("----------------------------")
     print("GPT-3 response:")
     print(output)
     return output
+
+def text_to_speech(answer, filename):
+    client = OpenAI()
+    file_path = os.path.join(audio_output_folder, filename)
+    response = client.audio.speech.create(
+    model="tts-1",
+    voice="onyx",
+    input=answer
+    )
+    
+    with open(file_path, "wb") as file:
+        file.write(response.content)
+    print("Audio file successfully created.")
+

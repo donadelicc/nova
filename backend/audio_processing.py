@@ -15,13 +15,14 @@ channels = 1  # mono
 sample_rate = 44100  # Sample rate
 record_seconds = 10  # Record duration
 
-audio_output_folder = "audio_files"
-text_outut_folder = "text_files"
+audio_input_folder = "audio_input"
+text_output_folder = "text_input"
+audio_output_folder = "audio_output"
 
-if not os.path.exists(audio_output_folder):
-    os.makedirs(audio_output_folder)
-if not os.path.exists(text_outut_folder):
-    os.makedirs(text_outut_folder)
+if not os.path.exists(audio_input_folder):
+    os.makedirs(audio_input_folder)
+if not os.path.exists(text_output_folder):
+    os.makedirs(text_output_folder)
     
 
 def record_audio(file_name):
@@ -48,7 +49,7 @@ def record_audio(file_name):
     stream.close()
     p.terminate()
 
-    file_path = os.path.join(audio_output_folder, file_name)
+    file_path = os.path.join(audio_input_folder, file_name)
 
     # Lagrer opptaket til en fil
     wf = wave.open(file_path, 'wb')
@@ -60,22 +61,3 @@ def record_audio(file_name):
     
     return file_path
 
-
-def transcribe_audio(file_name, text_output_file):
-    client = OpenAI()
-    
-    file_path = os.path.join(audio_output_folder, file_name)
-    
-    audio_file= open(file_path, "rb")
-    transcript = client.audio.transcriptions.create(
-        model="whisper-1", 
-        file=audio_file,
-        response_format="text"
-        )
-    
-    file_path = os.path.join(text_outut_folder, text_output_file)
-    
-    with open(file_path, "w") as file:
-        file.write(transcript)
-    print("Audio successfullt trascribed. Transcript:")
-    print(transcript)

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from backend.audio_processing import record_audio, transcribe_audio
-from backend.response_handling import response
+from backend.audio_processing import record_audio
+from backend.transcribe_audio import transcribe_audio
+from backend.response_handling import response, text_to_speech
 
 app = Flask(__name__)
 app.secret_key = 'preben sin nøkkel'
@@ -10,13 +11,16 @@ def index():
     if request.method == 'POST':
         if 'record' in request.form:
 
-            audio_file = "audio.wav"
+            audio_input_file = "audio.wav"
             text_file = "transcript.txt"
-            record_audio(audio_file)
-            transcribe_audio(audio_file, text_file)
+            audio_output_file = "audio.mp3"
+            
+            record_audio(audio_input_file)
+            transcribe_audio(audio_input_file, text_file)
             res = response(text_file)
             session['response'] = res
-
+            text_to_speech(res, audio_output_file)
+            
         return redirect(url_for('index'))
 
     return render_template('index.html', response=session.get('response'))
