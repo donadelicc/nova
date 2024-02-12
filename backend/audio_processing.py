@@ -13,7 +13,7 @@ chunk = 1024  # Record in chunks
 format = pyaudio.paInt16  # 16 bit format
 channels = 1  # mono
 sample_rate = 44100  # Sample rate
-record_seconds = 10  # Record duration
+record_seconds = 3  # Record duration
 
 audio_input_folder = "audio_input"
 text_output_folder = "text_input"
@@ -25,7 +25,7 @@ if not os.path.exists(text_output_folder):
     os.makedirs(text_output_folder)
     
 
-def record_audio(file_name):
+def record_audio(file_name, folder):
     p = pyaudio.PyAudio()
 
     # Åpne stream for opptak
@@ -49,7 +49,7 @@ def record_audio(file_name):
     stream.close()
     p.terminate()
 
-    file_path = os.path.join(audio_input_folder, file_name)
+    file_path = os.path.join(folder, file_name)
 
     # Lagrer opptaket til en fil
     wf = wave.open(file_path, 'wb')

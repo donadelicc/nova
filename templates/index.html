@@ -17,12 +17,47 @@
             <div id="response">{{ response }}</div>
         {% endif %}
         {% if response %}
-            <audio controls>
-                <source src="{{ url_for('static', filename='audio_output/audio.mp3') }}" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <audio controls autoplay>
+            <source src="{{ url_for('static', filename='audio_output/audio.mp3') }}?{{ now }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
         {% endif %}
 
+    
+
     </div>
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const audio = document.querySelector('audio');
+            if (audio) {
+                audio.play().catch(error => console.error('Autoplay was prevented.', error));
+            }
+        });
+    </script>
+         -->
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script>
+        if (annyang) {
+            // Definer kommandoer
+            var commands = {
+                'record': function() { 
+                    fetch('/voice-command', {
+                        method: 'POST',
+                        body: JSON.stringify({command: 'record'}),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(response => response.json())
+                      .then(data => console.log(data));
+                }
+            };
+            annyang.addCommands(commands);
+            annyang.start();
+        }
+    </script> -->
+
+
 </body>
 </html>

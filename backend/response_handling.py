@@ -1,5 +1,6 @@
 import os
 from openai import OpenAI
+import pyttsx3
 
 audio_input_folder = "audio_input"
 text_output_folder = "text_input"
@@ -23,7 +24,10 @@ def response(file_name):
         messages=[
             {"role": "system", "content": "Du er en talestyrt assistent som etter beste evne prøver å besvare spørsmål som du blir stilt."},
             {"role": "user", "content": f"{question}"}
-        ]
+        ],
+        temperature=0.1,
+        max_tokens=150
+        
     )
     
     output = response.choices[0].message.content
@@ -45,3 +49,10 @@ def text_to_speech(answer, filename):
         file.write(response.content)
     print("Audio file successfully created.")
 
+
+engine = pyttsx3.init()
+
+def speak_text(text):
+    engine.say(text)
+    engine.runAndWait()
+    

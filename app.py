@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from datetime import datetime
+
+
 from backend.audio_processing import record_audio
 from backend.transcribe_audio import transcribe_audio
 from backend.response_handling import response, text_to_speech
@@ -23,7 +26,8 @@ def index():
             
         return redirect(url_for('index'))
 
-    return render_template('index.html', response=session.get('response'))
+    now = datetime.now().timestamp()  # Generer et unikt tidsstempel til
+    return render_template('index.html', response=session.get('response'), now=now)
 
 if __name__ == '__main__':
     app.run(debug=True)
