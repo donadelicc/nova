@@ -24,6 +24,9 @@ def transcribe_audio2(filename):
     
 
 def transcribe_audio(file_name, text_output_file):
+    
+    load_dotenv()
+    print(os.getenv("OPENAI_API_KEY"))
     client = OpenAI()
     
     file_path = os.path.join(audio_input_folder, file_name)
