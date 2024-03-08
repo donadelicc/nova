@@ -1,3 +1,4 @@
-Basics
-- Sette opp test av whisper api med gpt-3.5
-- Legge ut en demo på nettet
+- Minne
+- Holde en samtale (ikke må si alexa på nytt)
+- Den må fullføre setninger (reponsen må våre fullstendig)
+- Aktiveringsnavn (annet enn Alexa)

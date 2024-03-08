@@ -1,0 +1,29 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "How are you",
+                "Is anyone there?",
+                "Hello",
+                "Good day"
+            ],
+            "responses": [
+                "Hello!",
+                "Good to see you again!",
+                "Hi there, how can I help?"]
+        },
+        {
+            "tag": "Anderson Consulting",
+            "patterns" : [
+                "What is Anderson Consulting",
+                "What does Anderson Consulting do",
+                "What is the purpose of Anderson Consulting"
+            ],
+            "responses":[
+                "Andersen Consulting as a company that makes awesome chatbots for small and medium sized businesses. They use advanced AI technology to help businesses grow and improve their processes."
+            ]
+        }
+    ]
+}
