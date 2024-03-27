@@ -5,7 +5,7 @@ by: Endre Nordtvedt & Preben Andersen
 ## Introduction
 
 ### The problem? 
-Kalender Assistent. I en hektisk hverdag som student er det ikke alltid så lett å henge med på alle gjøremål og deadlines. Stemme assistenten “...” skal være studentens beste venn når det kommer til påminnelser om kommende gjøremål. Det dukker også stadig opp spørsmål en måtte ha. Da er det greit med en assistent som har svaret på alt.
+Kalender Assistent. I en hektisk hverdag som student er det ikke alltid så lett å henge med på alle gjøremål og deadlines. Stemme assistenten “...” skal være studentens beste venn når det kommer til påminnelser, kommende gjøremål og generelle spørsmål. Det dukker også stadig opp spørsmål en måtte ha. Da er det greit med en assistent som har svaret på alt.
 
 En kan bruke telefonen til dette, men av erfaring mener gruppens medlemmer at en kommer på ting en må huske i tider og utider samt ting en lurer på dukker opp når en ikke venter det. Dette kan være når en står i dusjen, telefonen lader, lager mat eller telefonen er tom for strøm. Her er det fint med en assistent som står i stuen for eksempel og en kan legge til påminnelser NÅR en kommer på disse.
 
