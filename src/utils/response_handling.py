@@ -29,7 +29,7 @@ conversation = ConversationChain(
     memory=ConversationBufferMemory()
 )
 
-def response_memory(file_name):
+async def response_memory(file_name):
     
     file_path = os.path.join(text_output_folder, file_name)
     

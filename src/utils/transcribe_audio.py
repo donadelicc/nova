@@ -18,7 +18,7 @@ if not os.path.exists(text_output_folder):
 
 
 
-def transcribe_audio(file_name, text_output_file):
+async def transcribe_audio(file_name, text_output_file):
     
     load_dotenv(dotenv_path)
     
@@ -41,7 +41,7 @@ def transcribe_audio(file_name, text_output_file):
     print("Audio successfullt trascribed. Transcript:")
     print(transcript)
     
-def detect_language(file_name):
+async def detect_language(file_name):
     file_path = os.path.join(text_output_folder, file_name)
     with open(file_path, "r") as file:
         text = file.read()
@@ -49,7 +49,7 @@ def detect_language(file_name):
         return language
     
     
-def translate_transcription(file_name):
+async def translate_transcription(file_name):
     
     file_path = os.path.join(text_output_folder, file_name)
 

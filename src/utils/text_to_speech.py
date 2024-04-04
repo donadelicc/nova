@@ -11,7 +11,7 @@ if not os.path.exists(audio_input_folder):
     
 
 
-def text_to_speech(answer, filename):
+async def text_to_speech(answer, filename):
     client = OpenAI()
     file_path = os.path.join(audio_output_folder, filename)
     response = client.audio.speech.create(
@@ -23,6 +23,7 @@ def text_to_speech(answer, filename):
     with open(file_path, "wb") as file:
         file.write(response.content)
     print("Audio file successfully created.")
+
 
 
 from playsound import playsound

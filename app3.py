@@ -1,14 +1,10 @@
-import base64
+from flask import Flask, request, render_template, jsonify
 import os
-from dotenv import load_dotenv
 import sys
-
-import streamlit as st
-import streamlit.components.v1 as components
-from pydub import AudioSegment
-import io
-
+from dotenv import load_dotenv
 import speech_recognition as sr
+import base64
+
 
 project_root = os.path.join('C:', os.sep, 'Users', 'prebe', 'OneDrive', 'HVL2', 'DAT255', 'Course Project', 'raberrypi_AIassistant')
 src_dir = os.path.join(project_root, 'src')
@@ -22,9 +18,7 @@ from utils.transcribe_audio import transcribe_audio, detect_language, translate_
 from utils.response_handling import response_memory
 from utils.text_to_speech import text_to_speech, get_audio_bytes
 
-# Streamlit app layout
-st.title("Voice Activated Assistant")
-
+app = Flask(__name__)
 
 
 def autoplay_audio(file_path):
@@ -36,36 +30,36 @@ def autoplay_audio(file_path):
         </audio>
     </div>
     """
-    components.html(audio_html, height=0)  
-
-
+    components.html(audio_html, height=0)
+    
 
 
 def listen_and_respond():
     recognizer = sr.Recognizer()
     
-    NAME = 'nina'
+    listening = True
     
-    while True:
+    NAME = 'alexa'
+    
+    while listening:
         try:
             with sr.Microphone() as mic:
                 print("Adjusting for ambient noise, please wait...")
-                recognizer.adjust_for_ambient_noise(mic, duration=0.2)
+                recognizer.adjust_for_ambient_noise(mic, duration=0.5)
                 print(f"Say {NAME} to activate...")
                 audio = recognizer.listen(mic)
-
-                text = recognizer.recognize_google(audio)
-                text = text.lower()
+                text = recognizer.recognize_google(audio).lower()
+                
                 if text == NAME:
                     print("Activated. Please ask your question.")
-                    while True:
+                    while listening:
                         try:
                             audio = recognizer.listen(mic, timeout=10)
-                            text = recognizer.recognize_google(audio)
-                            text = text.lower()
+                            text = recognizer.recognize_google(audio).lower()
                             if text == "stop alexa":
                                 print("Deactivated.")
-                                sys.exit()
+                                listening = False
+                                break
                             else:
                                 print("Voice detected. Processing...")
                                 audio_input_folder = os.getenv("AUDIO_INPUT_FOLDER")
@@ -100,14 +94,19 @@ def listen_and_respond():
             print("Google Speech Recognition could not understand audio")
         except sr.RequestError as e:
             print(f"Could not request results from Google Speech Recognition service; {e}")
+            
+        except KeyboardInterrupt:
+            print("Deactivated.")
+            listening = False
 
-    
-try: 
-    listen_and_respond()
-except (sr.WaitTimeoutError, sr.UnknownValueError, sr.RequestError) as e:
-    st.error(str(e))  # Display errors appropriately
+@app.route('/')
+def index():
+        
+    return render_template('index.html')
+
+@app.route('/listen', methods=['POST'])
+def 
 
 
-    
-
-    
+if __name__ == '__main__':
+    app.run(debug=True)

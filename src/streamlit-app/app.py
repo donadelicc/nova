@@ -89,6 +89,10 @@ def listen_and_respond():
         print("Google Speech Recognition could not understand audio")
     except sr.RequestError as e:
         print(f"Could not request results from Google Speech Recognition service; {e}")
+        
+    except KeyboardInterrupt:
+        print("Keyboard interrupt detected. Exiting...")
+        sys.exit(0)
 
 
 if st.button("Start Listening"):  # Make the button control the process
