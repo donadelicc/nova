@@ -27,9 +27,20 @@ def text_to_speech(answer, filename):
 
 from playsound import playsound
 
-def play_audio_file(file_path):
+def play_audio(file_path):
     try:
         playsound(file_path)
         print("Playing audio file:", file_path)
     except Exception as e:
         print("Error playing audio file:", e)
+        
+        
+def get_audio_bytes(file_path):
+    try:
+        audio_file = open(file_path, 'rb')
+        audio_bytes = audio_file.read()
+        return audio_bytes
+    except Exception as e:
+        print("Error getting audio bytes:", e)
+        return None
+    

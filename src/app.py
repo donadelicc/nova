@@ -3,26 +3,26 @@ import pyttsx3
 import os
 import sys
 
-# Antar at du har implementert følgende funksjoner i dine backend-moduler
-from transcribe_audio import transcribe_audio, detect_language, translate_transcription
-from response_handling import response_memory
-from text_to_speech import text_to_speech, play_audio_file
-
+from utils.transcribe_audio import transcribe_audio, detect_language, translate_transcription
+from utils.response_handling import response_memory
+from utils.text_to_speech import text_to_speech, play_audio_file
 
 def listen_and_respond():
     recognizer = sr.Recognizer()
+    
+    NAME = 'nina'
     
     while True:
         try:
             with sr.Microphone() as mic:
                 print("Adjusting for ambient noise, please wait...")
                 recognizer.adjust_for_ambient_noise(mic, duration=0.2)
-                print("Say 'alexa' to activate...")
+                print(f"Say {NAME} to activate...")
                 audio = recognizer.listen(mic)
 
                 text = recognizer.recognize_google(audio)
                 text = text.lower()
-                if text == "alexa":
+                if text == NAME:
                     print("Activated. Please ask your question.")
                     while True:
                         try:
