@@ -43,7 +43,7 @@ def autoplay_audio(file_path):
         </audio>
     </div>
     """
-    components.html(audio_html, height=50)  
+    components.html(audio_html, height=0)  
 
 
 
