@@ -9,7 +9,9 @@ Student Assistent. I en hektisk hverdag som student er det ikke alltid så lett 
 
 En kan bruke telefonen til dette, men av erfaring mener gruppens medlemmer at en kommer på ting en må huske i tider og utider samt ting en lurer på dukker opp når en ikke venter det. Dette kan være når en står i dusjen, telefonen lader, lager mat eller telefonen er tom for strøm. Her er det fint med en assistent som står i stuen for eksempel og en kan legge til påminnelser NÅR en kommer på disse.
 
-Bonus: Stemmegjenkjenning. Vi ønsker at applikasjonen skal kjenne igjen stemmen til flere brukere og legge påminnelsen på tilhørende kalender utifra hvem som spør. Dette kan være aktuelt i kollektiv hvor flere studenter bor sammen.
+Bonus:
+1: Legge applikasjonen over på en enhet som raspberry pi. Gruppen kommer i føste omgang til å lage en web-app men, om det er tid og kapasitet så vil gruppen få applikasjonen over på enhet. Dette vil gjøre visjonen om en student assistent som alltid er tilgjengelig mer realistisk og faktisk brukenes.
+2: Stemmegjenkjenning. Vi ønsker at applikasjonen skal kjenne igjen stemmen til flere brukere og legge påminnelsen på tilhørende kalender utifra hvem som spør. Dette kan være aktuelt i kollektiv hvor flere studenter bor sammen.
 
 ### Challenges
 Noe som kan bli en utfordring er å få applikasjonen til å starte når ordet “...” blir sagt. Men dette er en kritisk funksjon til å få assistenten til å bli stemmeaktivert. Gruppen må også vurdere navn på hva assistenten skal hete. Dette blir et “Wakeword” for å starte assistenten. Noen navn er bedre aktivering- ord enn andre. Ordet “Siri” eller “Alexa” kom nok frem etter mye og omfattende research på dette området.
