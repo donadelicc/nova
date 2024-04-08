@@ -11,7 +11,10 @@ from langchain.chains import LLMChain, ConversationChain
 from langchain.memory import ConversationBufferMemory
 
 
+text_input_folder = os.getenv("TEXT_INPUT_FOLDER")
 text_output_folder = os.getenv("TEXT_OUTPUT_FOLDER")
+if not os.path.exists(text_input_folder):
+    os.makedirs(text_input_folder)
 if not os.path.exists(text_output_folder):
     os.makedirs(text_output_folder)
 
@@ -31,13 +34,16 @@ conversation = ConversationChain(
 
 async def response_memory(file_name):
     
-    file_path = os.path.join(text_output_folder, file_name)
+    input_file_path = os.path.join(text_input_folder, file_name)
+    output_file_path = os.path.join(text_output_folder, "A.txt")
     
-    with open(file_path, "r") as file:
+    with open(input_file_path, "r", encoding="utf-8") as file:
         question = file.read()
 
     response = conversation.predict(input=question)
-    print(response)
+    
+    with open(output_file_path, "w", encoding="utf-8") as file:
+        file.write(response)
     return response
 
 
