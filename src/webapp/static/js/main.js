@@ -44,7 +44,7 @@ recognizer.onerror = (event) => {
 function restartSpeechRecognition() {
     // Nullstill talegjenkjenning for å starte på nytt
     recognizer.start();
-}
+}    
 
 async function startRecording() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
