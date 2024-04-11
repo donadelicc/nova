@@ -49,3 +49,5 @@ Da det var mye frem og tilbake og gruppen testet mange forskjellige stemmegjennk
 ### Future work
 
 ### References
+
+For referanser brukt i prosjektet, se ./references/references.md
