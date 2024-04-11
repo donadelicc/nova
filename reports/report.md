@@ -56,4 +56,4 @@ Gruppen vil få til å lage en fungerende web-applikasjon til prosjektets sluttd
 
 ### References
 
-For referanser brukt i prosjektet, se ./references/references.md
+For referanser brukt i prosjektet, se [./references/references.md](./references/references.md)
