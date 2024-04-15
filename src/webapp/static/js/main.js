@@ -1,5 +1,5 @@
 const NAME = 'alexa';
-let isRecording = false; // Flag to indicate recording state
+let isRecording = false; //  recording state
 let audioChunks = [];
 let mediaRecorder;
 

@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file, jsonify, send_from_directory
-from werkzeug.utils import secure_filename
 
 import os
 import sys
@@ -34,7 +33,7 @@ def upload_audio():
     if file.filename == '':
         return jsonify({'message': 'Ingen fil valgt for opplasting'}), 400
     if file:
-        filename = secure_filename(file.filename)
+        filename = file.filename
         # save_path = os.path.join(os.getenv('AUDIO_INPUT_FOLDER'), filename)
         save_path = os.getenv('AUDIO_INPUT_FOLDER') + "/" + filename
         file.save(save_path)
