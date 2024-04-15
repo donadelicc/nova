@@ -1,0 +1,17 @@
+html{
+    background-color: black;
+    
+}
+
+.ImageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#coverImage{
+    width: 400px;
+    height: 400px;
+   
+}

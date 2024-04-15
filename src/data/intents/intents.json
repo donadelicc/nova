@@ -1,0 +1,14 @@
+{
+    "intents": [
+      {
+        "intent": "show_calendar_events",
+        "description": "Viser brukerens kommende hendelser",
+        "examples": [
+          "Hva er på kalenderen min i dag?",
+          "Har jeg noen planer denne uken?",
+          "Når er min neste avtale?"
+        ]
+      }
+    ]
+  }
+  
