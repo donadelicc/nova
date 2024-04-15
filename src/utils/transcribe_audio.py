@@ -1,8 +1,6 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-# import pyttsx3
-# import speech_recognition as sr
 from pathlib import Path
 from langdetect import detect
 

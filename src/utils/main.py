@@ -1,11 +1,10 @@
 import speech_recognition as sr
-import pyttsx3
 import os
 import sys
 
 from utils.transcribe_audio import transcribe_audio, detect_language, translate_transcription
 from utils.response_handling import response_memory
-from utils.text_to_speech import text_to_speech, play_audio_file
+from utils.text_to_speech import text_to_speech
 
 def listen_and_respond():
     recognizer = sr.Recognizer()
