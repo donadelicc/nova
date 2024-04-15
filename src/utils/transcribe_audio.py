@@ -7,9 +7,9 @@ from pathlib import Path
 from langdetect import detect
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-# load_dotenv(dotenv_path)
+load_dotenv(dotenv_path)
 
-load_dotenv()
+#load_dotenv()
 
 audio_input_folder = os.getenv("AUDIO_INPUT_FOLDER")
 text_input_folder = os.getenv("TEXT_INPUT_FOLDER")
