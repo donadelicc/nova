@@ -1,21 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file, jsonify, send_from_directory
 
 import os
-import sys
 import asyncio
 
-
-project_root = os.path.join('C:', os.sep, 'Users', 'prebe', 'OneDrive', 'HVL2', 'DAT255', 'Course Project', 'raberrypi_AIassistant')
-src_dir = os.path.join(project_root, 'src')
-
-if src_dir not in sys.path:
-    sys.path.append(src_dir)
-##
 
 from utils.transcribe_audio import transcribe_audio, detect_language, translate_transcription
 from utils.response_handling import response_memory
 from utils.text_to_speech import text_to_speech
-
+    
 app = Flask(__name__)
 
 @app.route('/')
