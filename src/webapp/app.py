@@ -24,7 +24,7 @@ def index():
     ## Lytte etter talekommandoer (javascript)
     
     return render_template('index.html')
-
+    
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():
     if 'audioFile' not in request.files:

@@ -1,4 +1,0 @@
-- Minne
-- Holde en samtale (ikke må si alexa på nytt)
-- Den må fullføre setninger (reponsen må våre fullstendig)
-- Aktiveringsnavn (annet enn Alexa)
