@@ -7,15 +7,33 @@
 
 </head>
 <body>
-
-
-    <script src="../static/js/main.js"></script>
     
-    <div class="ImageContainer">
-        <img id="coverImage" src="../static/images/cover.webp" alt="Beskrivelse av bildet">
+    <!-- <div id="vibratingCircle" class="circle hidden"></div> -->
+    
+    <!--Venter på aktivering-->
+    <div class="start">
+        <div class="still"></div>
+        <p>Si Nova for å aktivere assistenten</p>
     </div>
 
+    <!--Venter på spørsmål-->
+    <div class="pulse">
+        <img class="image-ear" src="../static/images/ear.png" alt="">
+    </div>
+
+     <!--Bruker venter på svar (prosessering)-->
+    <div class="pulse">
+        <img class="image-process" src="../static/images/process.png" alt="">
+    </div>
+
+    <!--Svaret blir lest ut-->
+    <div class="pulse">
+        <img class="image-speak" src="../static/images/speaker.png" alt="">
+    </div>
+
+
     
+    <script type="module" src="../static/js/main.js"></script>
     
 </body>
 </html>

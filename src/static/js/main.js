@@ -1,11 +1,19 @@
+import { updateUI } from './animation.js';
+
 const NAME = 'nova';
 
 let isRecording = false; //  recording state
 let audioChunks = [];
 let mediaRecorder;
 
+
+
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognizer = new SpeechRecognition();
+
+document.addEventListener('DOMContentLoaded', function () {
+    updateUI('waitingForActivation');
+});
 
 recognizer.continuous = true;
 recognizer.interimResults = true;
@@ -15,21 +23,20 @@ recognizer.onstart = () => {
 };
 
 recognizer.onresult = async (event) => {
+    updateUI('waitingForActivation');
+
     const transcript = Array.from(event.results)
         .map(result => result[0].transcript)
         .join('');
 
     if (transcript.toLowerCase().includes(NAME) && !isRecording) {
         console.log("Activated. Please ask your question.");
+        updateUI('waitingForQuestion');
         isRecording = true;
         recognizer.stop(); // Stop speech recognition to avoid conflict with MediaRecorder
         await startRecording();
-        setTimeout(() => {
-            if (isRecording) {
-                stopRecording();
-            }
-        }, 10000); // Optional: stop recording after 10 seconds
-    } else if (transcript.toLowerCase().includes("stop alexa") && isRecording) {
+       
+    } else if (transcript.toLowerCase().includes("stop nova") && isRecording) {
         console.log("Deactivated.");
         stopRecording();
         return
@@ -44,11 +51,14 @@ recognizer.onerror = (event) => {
 
 function restartSpeechRecognition() {
     // Nullstill talegjenkjenning for å starte på nytt
+    
+    updateUI('waitingForActivation');
     recognizer.start();
 }    
 
 async function startRecording() {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
     mediaRecorder = new MediaRecorder(stream);
     audioChunks = [];
 
@@ -80,17 +90,53 @@ async function startRecording() {
 
     mediaRecorder.start();
     console.log("Recording started.");
+    // Check for silence in the audio
+    checkSilence();
 }
 
+
+function checkSilence() {
+    const audioContext = new AudioContext();
+    const source = audioContext.createMediaStreamSource(mediaRecorder.stream);
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+
+    source.connect(analyser);
+
+    const buffer = new Float32Array(analyser.fftSize);
+    const threshold = 0.005; // Adjust as needed
+    let silenceDuration = 0; // In milliseconds
+    const maxSilenceDuration = 2000; // Max silence before stopping
+
+    setInterval(() => {
+        analyser.getFloatTimeDomainData(buffer);
+
+        const isSilent = buffer.every(sample => Math.abs(sample) < threshold);
+
+        if (isSilent) {
+            silenceDuration += 100; // Interval runs every 100ms
+            if (silenceDuration >= maxSilenceDuration) {
+                stopRecording();
+            }
+        } else {
+            silenceDuration = 0;
+        }
+    }, 100); // Check every 100ms
+}
+
+
 function stopRecording() {
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+    updateUI('processing');
+
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
         mediaRecorder.stop();
-        console.log("Recording stopped by user.");
-        isRecording = false; // Reset recording state
+        console.log("Recording stopped.");
     }
 }
 
 async function fetchGeneratedAudio() {
+    updateUI('speaking');
+
     try {
         const response = await fetch('/get_response_audio');
         if (response.ok) {
