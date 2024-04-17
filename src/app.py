@@ -1,21 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file, jsonify, send_from_directory
-from werkzeug.utils import secure_filename
 
 import os
-import sys
 import asyncio
 
-
-project_root = os.path.join('C:', os.sep, 'Users', 'prebe', 'OneDrive', 'HVL2', 'DAT255', 'Course Project', 'raberrypi_AIassistant')
-src_dir = os.path.join(project_root, 'src')
-
-if src_dir not in sys.path:
-    sys.path.append(src_dir)
 
 from utils.transcribe_audio import transcribe_audio, detect_language, translate_transcription
 from utils.response_handling import response_memory
 from utils.text_to_speech import text_to_speech
-
+    
 app = Flask(__name__)
 
 @app.route('/')
@@ -24,7 +16,7 @@ def index():
     ## Lytte etter talekommandoer (javascript)
     
     return render_template('index.html')
-
+    
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():
     if 'audioFile' not in request.files:
@@ -33,7 +25,7 @@ def upload_audio():
     if file.filename == '':
         return jsonify({'message': 'Ingen fil valgt for opplasting'}), 400
     if file:
-        filename = secure_filename(file.filename)
+        filename = file.filename
         # save_path = os.path.join(os.getenv('AUDIO_INPUT_FOLDER'), filename)
         save_path = os.getenv('AUDIO_INPUT_FOLDER') + "/" + filename
         file.save(save_path)
