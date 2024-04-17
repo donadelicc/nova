@@ -1,4 +1,5 @@
-const NAME = 'alexa';
+const NAME = 'nova';
+
 let isRecording = false; //  recording state
 let audioChunks = [];
 let mediaRecorder;
