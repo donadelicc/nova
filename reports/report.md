@@ -24,13 +24,17 @@ En annen utfordring kan være å få assistenten til å riktig kjenne igjen stem
 
 ### Design of the project
 
-Disignet på web-applikasjonen er
+Lytte på wakeword
+Transcribering av audio
+Sende tekst til LLM
+text to speech
+Azure
 
-### Prompt engineering
-
-Her er det viktig å promt engineere assistenten til å ta imot informasjon og legge det på en riktig måte til i kalenderen til den som spør.
+Diagram som viser programflyt
 
 ## Result
+
+## Discussion and future work
 
 ### What we accomplished
 
@@ -42,9 +46,7 @@ Gruppen har også laget en notebook som tar inn forslag til navn, lest inn av et
 
 Som beskrevet mer i detalj i diskusjons-delen av rapporten så gikk det mer tid til utforsking og prøve på å implementere kul teknologi i web-appen. Derav ble web-applikasjonen enklere enn gruppen ønsket. En kan si vi hadde litt høye ambisjoner for prosjektet og ønsket å få til veldig mye på relativt kort tid med tanke på at vi begge skriver bacheloroppgavene våre i tillegg til faget.
 
-Som en bonus oppgave ville vi få web applikasjonen over på raspberry pi. Då ingen av gruppemedlemmene har noe tidligere ærfaring med denne ble en del av tiden ved prosjektstart satt til å finne ut hvordan den fungerer og kan brukes. Då vi skjønte at det kanskje ble litt for omfattende i forhold til alt vi ville få til, valgte gruppen å prioritere web-applikasjonen.
-
-## Discussion and future work
+Som en bonus oppgave ville vi få web applikasjonen over på raspberry pi. Da ingen av gruppemedlemmene har noe tidligere ærfaring med denne ble en del av tiden ved prosjektstart satt til å finne ut hvordan den fungerer og kan brukes. Då vi skjønte at det kanskje ble litt for omfattende i forhold til alt vi ville få til, valgte gruppen å prioritere web-applikasjonen.
 
 ### Discussion
 
