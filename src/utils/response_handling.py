@@ -18,7 +18,6 @@ if not os.path.exists(text_input_folder):
 if not os.path.exists(text_output_folder):
     os.makedirs(text_output_folder)
 
-
     
 llm = ChatOpenAI(
     model="gpt-3.5-turbo",
@@ -26,7 +25,7 @@ llm = ChatOpenAI(
 )
 
 conversation = ConversationChain(
-    name="Anna", ## chain name
+    name="Nova", ## chain name
     llm=llm,
     verbose=True,
     memory=ConversationBufferMemory()
@@ -45,6 +44,8 @@ async def response_memory(file_name):
     with open(output_file_path, "w", encoding="utf-8") as file:
         file.write(response)
     return response
+
+
 
 
 prompt = ChatPromptTemplate(
