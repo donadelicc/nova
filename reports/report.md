@@ -30,7 +30,12 @@ Gruppen har etter testing og utprøving av forskjellige metoder å detektere akt
 Transcribering og behandling av audio
 Når tale blir oppdaget av Web Speech API blir den transkribert og lagret som en tekstfil i (TEXT_INPUT_FOLDER). Teksten fra denne filen blir sendt til OpenAi's sin Large Language Model (LLM) vet hvelp av OpenAi sitt API for å kunne gi en respons. Responsen er altså svaret fra modellen. Modellen brukt er GPT-3.5-Turbo. Promptet til modellen er per nå:
 
-"Du er en oversetter av feiltranskriberte spørsmål. Oversett spørsmålet til norsk."
+```
+// Du er en hyggelig og jovial AI assistent som heter Nova.
+// Du svarer kort og konsist på spørsmål.
+// Du dikter ikke opp ting og svarer bare dersom du vet svaret.
+// Svar alltid på norsk."
+```
 
 Men i senere tid ville man kunne laget applikasjonen og modellen mer spesifikk til arbeidsoppgavene. Nå ønsker gruppen i første omgang å ha en generell Ai assistent som svarer på spørsmål fra bruker.
 
