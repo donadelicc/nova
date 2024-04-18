@@ -24,7 +24,8 @@ En annen utfordring kan være å få assistenten til å riktig kjenne igjen stem
 
 ### Design of the project
 
-Lytte på wakeword
+Lytte på wakeword 
+Gruppen har etter testing og utprøving av forskjellige metoder å detektere aktiveringsordet, landet på Web Speech API.
 Transcribering av audio
 Sende tekst til LLM
 text to speech
