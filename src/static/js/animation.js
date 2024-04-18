@@ -12,11 +12,12 @@ function hideAllStates() {
 
 export function updateUI(state) {
     hideAllStates();
+    console.log("UI state: " +state);
     switch(state) {
-        case 'waitingForActivation':
+        case 'activate':
             activationWaiting.style.opacity = '1';
             break;
-        case 'waitingForQuestion':
+        case 'listening':
             questionWaiting.style.opacity = '1';
             break;
         case 'processing':
@@ -27,5 +28,3 @@ export function updateUI(state) {
             break;
     }
 }
-
-

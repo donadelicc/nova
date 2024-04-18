@@ -1,5 +1,6 @@
 import { updateUI } from './animation.js';
 
+
 const NAME = 'nova';
 
 let isRecording = false; //  recording state
@@ -8,90 +9,104 @@ let mediaRecorder;
 
 
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognizer = new SpeechRecognition();
-
-document.addEventListener('DOMContentLoaded', function () {
-    updateUI('waitingForActivation');
+document.addEventListener('DOMContentLoaded', function() {
+    updateUI('activate')
 });
 
-recognizer.continuous = true;
-recognizer.interimResults = true;
+function startAssistant() {
 
-recognizer.onstart = () => {
-    console.log("Adjusting for ambient noise, please wait...");
-};
+    updateUI('activate')
 
-recognizer.onresult = async (event) => {
-    updateUI('waitingForActivation');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognizer = new SpeechRecognition();
 
-    const transcript = Array.from(event.results)
-        .map(result => result[0].transcript)
-        .join('');
-
-    if (transcript.toLowerCase().includes(NAME) && !isRecording) {
-        console.log("Activated. Please ask your question.");
-        updateUI('waitingForQuestion');
-        isRecording = true;
-        recognizer.stop(); // Stop speech recognition to avoid conflict with MediaRecorder
-        await startRecording();
-       
-    } else if (transcript.toLowerCase().includes("stop nova") && isRecording) {
-        console.log("Deactivated.");
-        stopRecording();
-        return
-    }
-
-    console.log("Voice detected. Processing...");
-};
-
-recognizer.onerror = (event) => {
-    console.error("Error occurred:", event.error);
-};
-
-function restartSpeechRecognition() {
-    // Nullstill talegjenkjenning for å starte på nytt
-    
-    updateUI('waitingForActivation');
     recognizer.start();
-}    
+    recognizer.continuous = true;
+    recognizer.interimResults = true;
+
+    recognizer.onstart = () => {
+        console.log("Adjusting for ambient noise, please wait...");
+    };
+
+    recognizer.onresult = async (event) => {
+
+        const transcript = Array.from(event.results)
+            .map(result => result[0].transcript)
+            .join('');
+    
+        if (transcript.toLowerCase().includes(NAME) && !isRecording) {
+            console.log("Activated. Please ask your question.");
+            updateUI('listening');
+            isRecording = true;
+            recognizer.stop(); // Stop speech recognition to avoid conflict with MediaRecorder
+            await startRecording();
+           
+        } else if (transcript.toLowerCase().includes("stop nova") && isRecording) {
+            console.log("Deactivated.");
+            await stopRecording();
+            return
+        }
+    
+        console.log("Voice detected. Processing...");
+    };
+    
+    recognizer.onerror = (event) => {
+        console.error("Error occurred:", event.error);
+    };
+
+}
+
 
 async function startRecording() {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-    mediaRecorder = new MediaRecorder(stream);
-    audioChunks = [];
+    console.log("startRecording() called")
 
-    mediaRecorder.ondataavailable = event => {
-        audioChunks.push(event.data);
-    };
+    try {
 
-    mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        const formData = new FormData();
-        formData.append("audioFile", audioBlob, "recording.wav");
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-        try {
-            let uploadResponse = await fetch('/upload_audio', {
-                method: 'POST',
-                body: formData,
-            });
-            if (uploadResponse.ok) {
-                console.log("File sent to the server.");
-                fetchGeneratedAudio(); // Fetch and play the generated audio from the server
-            } else {
-                console.error("Server error during file upload.");
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = event => {
+            audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = async () => {
+            updateUI('processing');
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const formData = new FormData();
+            formData.append("audioFile", audioBlob, "recording.wav");
+            
+            try {
+                let uploadResponse = await fetch('/upload_audio', {
+                    method: 'POST',
+                    body: formData,
+                });
+                if (uploadResponse.ok) {
+                    console.log("File sent to the server.");
+                    fetchGeneratedAudio(); // Fetch and play the generated audio from the server
+                    console.log("fetchGeneratedAudio() called")
+                } else {
+                    console.error("Server error during file upload.");
+                }
+            } catch (error) {
+                console.error("Error sending file to the server:", error);
+            } finally {
+                restartSpeechRecognition();
             }
-        } catch (error) {
-            console.error("Error sending file to the server:", error);
-        }
-    };
 
-    mediaRecorder.start();
-    console.log("Recording started.");
-    // Check for silence in the audio
-    checkSilence();
+        };
+
+        mediaRecorder.start();
+        console.log("Recording started.");
+        checkSilence();
+
+    } catch {
+        console.error("Error accessing media device:", error);
+    
+    }
 }
 
 
@@ -104,7 +119,7 @@ function checkSilence() {
     source.connect(analyser);
 
     const buffer = new Float32Array(analyser.fftSize);
-    const threshold = 0.005; // Adjust as needed
+    const threshold = 0.1; // Adjust as needed
     let silenceDuration = 0; // In milliseconds
     const maxSilenceDuration = 2000; // Max silence before stopping
 
@@ -117,6 +132,7 @@ function checkSilence() {
             silenceDuration += 100; // Interval runs every 100ms
             if (silenceDuration >= maxSilenceDuration) {
                 stopRecording();
+
             }
         } else {
             silenceDuration = 0;
@@ -125,8 +141,7 @@ function checkSilence() {
 }
 
 
-function stopRecording() {
-    updateUI('processing');
+async function stopRecording() {
 
     if (mediaRecorder && mediaRecorder.state === 'recording') {
         mediaRecorder.stop();
@@ -135,7 +150,6 @@ function stopRecording() {
 }
 
 async function fetchGeneratedAudio() {
-    updateUI('speaking');
 
     try {
         const response = await fetch('/get_response_audio');
@@ -143,11 +157,14 @@ async function fetchGeneratedAudio() {
             const audioBlob = await response.blob();
             const audioUrl = URL.createObjectURL(audioBlob);
             const audio = new Audio(audioUrl);
+   
+            audio.play();
+            updateUI('speaking');
             audio.onended = () => {
                 // Gjenstart talegjenkjenning når lyden er ferdig spilt
                 restartSpeechRecognition();
             };
-            audio.play();
+
             console.log("Playing generated audio.");
         } else {
             console.error("Error fetching the generated audio.");
@@ -157,4 +174,11 @@ async function fetchGeneratedAudio() {
     }
 }
 
-restartSpeechRecognition();
+
+function restartSpeechRecognition() {
+    console.log("restartSpeechRecognition() called");
+    isRecording = false;
+    startAssistant()
+}
+
+restartSpeechRecognition()
