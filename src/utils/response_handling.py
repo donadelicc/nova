@@ -6,6 +6,7 @@ from langchain.prompts import (
     MessagesPlaceholder,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
+    PromptTemplate
 )
 from langchain.chains import LLMChain, ConversationChain
 from langchain.memory import ConversationBufferMemory
@@ -19,6 +20,16 @@ if not os.path.exists(text_output_folder):
     os.makedirs(text_output_folder)
 
 
+prompt= PromptTemplate(
+     input_variables=['history', 'input'],
+     template="""
+     Du er en hyggelig og jovial AI assistent som heter Nova.
+     Du svarer kort og konsist på spørsmål.
+     Du dikter ikke opp ting og svarer bare dersom du vet svaret.
+     Svar alltid på norsk.
+     \n\nNåværende samtalehistorikk:\n{history}\n
+     Human: {input}\nAI:"""
+)
     
 llm = ChatOpenAI(
     model="gpt-3.5-turbo",
@@ -29,7 +40,8 @@ conversation = ConversationChain(
     name="Anna", ## chain name
     llm=llm,
     verbose=True,
-    memory=ConversationBufferMemory()
+    prompt=prompt,
+    memory=ConversationBufferMemory(),
 )
 
 async def response_memory(file_name):
@@ -45,65 +57,3 @@ async def response_memory(file_name):
     with open(output_file_path, "w", encoding="utf-8") as file:
         file.write(response)
     return response
-
-
-prompt = ChatPromptTemplate(
-        messages=[
-            SystemMessagePromptTemplate.from_template(
-                "Du er en hyggelig personlig assistent som svarer etter beste evne på spørsmål."
-            ),
-            # The `variable_name` here is what must align with memory
-            MessagesPlaceholder(variable_name="chat_history"),
-            HumanMessagePromptTemplate.from_template("{question}")
-        ]
-    )
-
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-conversation2 = LLMChain(
-    llm=llm,
-    prompt=prompt,
-    verbose=True,
-    memory=memory
-)
-
-def response_memory2(file_name):
-    
-    file_path = os.path.join(text_output_folder, file_name)
-    
-    with open(file_path, "r") as file:
-        question = file.read()
-
-    
-    response = conversation2({"question": question})
-    print("----------------------------")
-    print("GPT-3 response:")
-    text_response = response['text']
-    print(text_response)
-    return text_response
-    
-
-def response(file_name):
-
-    file_path = os.path.join(text_output_folder, file_name)
-    
-    with open(file_path, "r") as file:
-        question = file.read()
-
-    client = OpenAI()
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "Du er en talestyrt assistent som etter beste evne prøver å besvare spørsmål som du blir stilt."},
-            {"role": "user", "content": f"{question}"}
-        ],
-        temperature=0.1,
-        max_tokens=150
-        
-    )
-    
-    output = response.choices[0].message.content
-    print("----------------------------")
-    print("GPT-3 response:")
-    print(output)
-    return output
-    
