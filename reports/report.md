@@ -42,7 +42,6 @@ Hoster applikasjonen som en web-app i Azure. Link til applikasjonen er:
 [web-app](https://youraiassistant.azurewebsites.net)
 
 
-Diagram som viser programflyt
 ![Design](../assets/images/design.drawio.png)
 
 
