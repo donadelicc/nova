@@ -37,6 +37,9 @@ Men i senere tid ville man kunne laget applikasjonen og modellen mer spesifikk t
 text to speech
 Responsen blir gjort om til tale vet hjelp av tts-1 (text-to-speech) fra OpenAi. Denne blir lagret som en audiofil og spilt av av applikasjonen. 
 
+Frontend:
+Gruppen har laget en frontend for å gjøre applikasjonen mer engasjerende å bruke. Når applikasjonen starter vises en blå sirkel. Denne står i ro i en såkalt "default" state hvor appen er klar for å brukes. Når aktiveringsordet "Nova" blir oppdaget begynner sirkelen å pulsere og bilde av et øre dukker opp i sirkelen for å indikere at applikasjonen lytter. Når spørringen er ferdig kommer et symbul som indikerer prosessering av inputen fra bruker og til slutt kommer et "speaker" sybol for å indikere at applikasjonen kommer med output i form av audio. Hele denne tiden pulserer sirkelen for å indikere at applikasjonen jobber. Frontend er skrevet med HTML og CSS.
+
 Azure
 Hoster applikasjonen som en web-app i Azure. Link til applikasjonen er:
 [web-app](https://youraiassistant.azurewebsites.net)
