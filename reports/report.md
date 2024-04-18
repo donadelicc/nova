@@ -25,13 +25,22 @@ En annen utfordring kan være å få assistenten til å riktig kjenne igjen stem
 ### Design of the project
 
 Lytte på wakeword 
-Gruppen har etter testing og utprøving av forskjellige metoder å detektere aktiveringsordet, landet på Web Speech API.
-Transcribering av audio
-Sende tekst til LLM
+Gruppen har etter testing og utprøving av forskjellige metoder å detektere aktiveringsordet, landet på Web Speech API. Her benytter gruppen metoden "onstart()" for å gi bruker feedback på at applikasjonen er igang. Det blir så brukt metoden "onresult()" som lytter etter aktiveringsordet "Nova" for å starte "startRecoding()" metoden som er hentet fra MediaStream Recording API. Denne metoden bruker mikrofonen på pcen til bruker til å ta opp lyd.
+
+Transcribering og behandling av audio
+Når tale blir oppdaget av Web Speech API blir den transkribert og lagret som en tekstfil i (TEXT_INPUT_FOLDER). Teksten fra denne filen blir sendt til OpenAi's sin Large Language Model (LLM) vet hvelp av OpenAi sitt API for å kunne gi en respons. Responsen er altså svaret fra modellen. Modellen brukt er GPT-3.5-Turbo. Promptet til modellen er per nå:
+
+"Du er en oversetter av feiltranskriberte spørsmål. Oversett spørsmålet til norsk."
+
+Men i senere tid ville man kunne laget applikasjonen og modellen mer spesifikk til arbeidsoppgavene. Nå ønsker gruppen i første omgang å ha en generell Ai assistent som svarer på spørsmål fra bruker.
+
 text to speech
+Responsen blir gjort om til tale vet hjelp av tts-1 (text-to-speech) fra OpenAi. Denne blir lagret som en audiofil og spilt av av applikasjonen. 
+
 Azure
 
-Diagram som viser programflyt
+
+Diagram som viser programflyt:
 
 ## Result
 
