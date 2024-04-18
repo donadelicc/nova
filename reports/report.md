@@ -50,7 +50,7 @@ Diagram som viser programflyt:
 
 ### What we accomplished
 
-Gruppen laget en enkel web applikasjon. Når applikasjonen starter så begynner den å lytte etter "wakeword". Deretter kan brukeren spørre om spørsmål og legge igjen notater som modellen kan minne bruker på senere. Når "wakeword" oppdages, transcriberer modellen det som blir sagt og gir denne teksten inn i Openai's modell utnyttet via Openai's API. Når modellen gir et svar så blir svaret gjort om til tale og gitt ut til bruker.
+Gruppen laget en enkel web applikasjon som er deployed og kjøres i Azure. Når applikasjonen starter så begynner den å lytte etter "wakeword". Deretter kan brukeren spørre om spørsmål og legge igjen notater som modellen kan minne bruker på senere. Når "wakeword" oppdages, transcriberer modellen det som blir sagt og gir denne teksten inn i Openai's modell utnyttet via Openai's API. Når modellen gir et svar så blir svaret gjort om til tale og gitt ut til bruker.
 
 Gruppen har også laget en notebook som tar inn forslag til navn, lest inn av et av gruppemedlemmene, og visualiserer navnene med wave-bilder og fargebilde. Da gruppen ikke hadde mye data av hva som er ett "Bra" stemmeassistennavn forruten om "Siri" og "Alexa" så trente vi ikke en modell, men heller sammenlignet bildene med forslagene som gruppen kom med men også forslag fra chatGPT. Gruppen prøvde å se mønster i de "gode" navnene og prøve å finne de igjhen i navnforslagene. Ut i fra gruppens sammenligninger med gode wakeword som "Siri" og "Alexa", ble "Nova" valgt og ser ut til å fanges opp av applikasjonen på en god måte. "Lyra" var også et godt forslag men har ser gruppen utfordringer med dialekt og språk. "Lyra" kan sies på tre forskjellige måter på østlandsk, Bergensk og Engelsk.
 
