@@ -43,7 +43,7 @@ Hoster applikasjonen som en web-app i Azure. Link til applikasjonen er:
 
 
 Diagram som viser programflyt
-![Design](./assets/images/design.drawio.png)
+![Design](assets/images/design.drawio.png)
 
 
 ## Result
