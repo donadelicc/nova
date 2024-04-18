@@ -38,6 +38,8 @@ text to speech
 Responsen blir gjort om til tale vet hjelp av tts-1 (text-to-speech) fra OpenAi. Denne blir lagret som en audiofil og spilt av av applikasjonen. 
 
 Azure
+Hoster applikasjonen som en web-app i Azure. Link til applikasjonen er:
+[youraiassistant.azurewebsites.net](youraiassistant.azurewebsites.net)
 
 
 Diagram som viser programflyt:
