@@ -1,11 +1,28 @@
- [NOVA](https://www.openai.com) - Voice activated personal assistant
+ [NOVA](https://www.openai.com) - Stemmestyrt personlig assistent
 ==================================
 
 
-A hands-on exploration of how to make speech to text and text to speech,
-aswell as exploring how to integrate Opensai's API to assist the user.
+This repo is an implementation of a locally hosted chatbot specifically focused on question answering over the LangChain documentation. Built with LangChain, FastAPI, and Next.js.
 
-## Report
+Denne kodebasen er en imlementasjon av en AI-assistent på web. Bygget med LangChain, Web Speech API, Google Speech Recognition and Flask.
+
+## Rapport
 For prosjektets rapport (Skrevet på Norsk), se [./reports/report.md](./reports/report.md)
-
+## Referanser
 For referanser brukt i prosjektet, se [./references/references.md](./references/references.md)
+
+# Kom i gang
+
+## 1
+
+Lorem ipsum
+
+
+## 2
+
+Lorem ipsum
+
+
+## 3
+
+Lorem ipsum
