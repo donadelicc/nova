@@ -49,7 +49,7 @@ Azure
 Hoster applikasjonen som en web-app i Azure. Link til applikasjonen er:
 [web-app](https://youraiassistant.azurewebsites.net)
 
-
+Designet og arkitekturen på web-appen ser slik ut:
 ![Design](../assets/images/design.drawio.png)
 
 
@@ -65,7 +65,7 @@ Gruppen har også laget en notebook som tar inn forslag til navn, lest inn av et
 
 ### What we wanted to, but did not accomplish
 
-Som beskrevet mer i detalj i diskusjons-delen av rapporten så gikk det mer tid til utforsking og prøve på å implementere kul teknologi i web-appen. Derav ble web-applikasjonen enklere enn gruppen ønsket. En kan si vi hadde litt høye ambisjoner for prosjektet og ønsket å få til veldig mye på relativt kort tid med tanke på at vi begge skriver bacheloroppgavene våre i tillegg til faget.
+Som beskrevet mer i detalj i diskusjons-delen av rapporten så gikk det mer tid til utforsking og prøve på å implementere kul teknologi i web-appen. Derav ble web-applikasjonen enklere enn gruppen ønsket og produktet ble en assistent som svarer på spørsmål siden gruppen ikke kom helt i mål m,ed kalender tilkobling. En kan si vi hadde litt høye ambisjoner for prosjektet og ønsket å få til veldig mye på relativt kort tid med tanke på at vi begge skriver bacheloroppgavene våre i tillegg til faget.
 
 Som en bonus oppgave ville vi få web applikasjonen over på raspberry pi. Da ingen av gruppemedlemmene har noe tidligere ærfaring med denne ble en del av tiden ved prosjektstart satt til å finne ut hvordan den fungerer og kan brukes. Då vi skjønte at det kanskje ble litt for omfattende i forhold til alt vi ville få til, valgte gruppen å prioritere web-applikasjonen.
 
@@ -79,7 +79,7 @@ Gruppen vil få til å lage en fungerende web-applikasjon til prosjektets sluttd
 
 ### Conclusion
 
-En kan konkludere med at det finnes veldig mye stilige løsninger og teknologier en kan jobbe med. Vi ser at dette nyskjerrigheten på dette gjorde at sluttproduktet ikke ble bra som vi ønsket då vi prøvde mye forskjellig. Skulle vi sartet på nytt hadde vi gjerne valgt en måte å gjøre ting på og fokusert på denne. Sluttproduktet ble som nevnt en enkel web-applikasjon hostet av Azure med et simpelt frontend design. Produktet kan jobbes videre med og gjøres enda bedre og mer avansert og til slutt føres over på en raspberry pi som har vært gruppens mål hele veien. Dette ønsker gruppen å jobbe videre med.
+En kan konkludere med at det finnes veldig mye stilige løsninger og teknologier en kan jobbe med. Vi ser at dette nyskjerrigheten på dette gjorde at sluttproduktet ikke ble bra som vi ønsket då vi prøvde mye forskjellig. Skulle vi sartet på nytt hadde vi gjerne valgt en måte å gjøre ting på og fokusert på denne. Sluttproduktet ble som nevnt en enkel web-applikasjon hostet av Azure med et simpelt frontend design. Assistenten svarer bruker på spørsmål bruker stiller. Vi begynte å se på logikken med å koble til en kalender ved å bruke agents men kom ikke helt i mål med dette. Produktet kan jobbes videre med og gjøres enda bedre og mer avansert og til slutt føres over på en raspberry pi som har vært gruppens mål hele veien. Dette ønsker gruppen å jobbe videre med.
 
 ### References
 
