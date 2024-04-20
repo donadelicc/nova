@@ -1,5 +1,4 @@
- [NOAVA](https://www.openai.com)
-Voice activated personal assistant
+ [NOVA](https://www.openai.com) - Voice activated personal assistant
 ==================================
 
 
