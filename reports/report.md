@@ -77,6 +77,10 @@ Da det var mye frem og tilbake og gruppen testet mange forskjellige stemmegjennk
 
 Gruppen vil få til å lage en fungerende web-applikasjon til prosjektets sluttdato. Videre arbeid og om gruppen hadde hat mer tid og kapasitet til å jobbe med prosjektet, vil være å implementere applikasjonen over på en raspberry pi enhet. For dette kreves det å sette seg litt mer inn i raspberry pi systemet. Gruppen vil også jobbe med stemmegjenkjenning.
 
+### Conclusion
+
+En kan konkludere med at det finnes veldig mye stilige løsninger og teknologier en kan jobbe med. Vi ser at dette nyskjerrigheten på dette gjorde at sluttproduktet ikke ble bra som vi ønsket då vi prøvde mye forskjellig. Skulle vi sartet på nytt hadde vi gjerne valgt en måte å gjøre ting på og fokusert på denne. Sluttproduktet ble som nevnt en enkel web-applikasjon hostet av Azure med et simpelt frontend design. Produktet kan jobbes videre med og gjøres enda bedre og mer avansert og til slutt føres over på en raspberry pi som har vært gruppens mål hele veien. Dette ønsker gruppen å jobbe videre med.
+
 ### References
 
 For referanser brukt i prosjektet, se [./references/references.md](./references/references.md)
