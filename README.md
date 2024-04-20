@@ -24,11 +24,3 @@ cd src
 python app.py
 ```
 
-## 2
-
-Lorem ipsum
-
-
-## 3
-
-Lorem ipsum
