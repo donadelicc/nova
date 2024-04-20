@@ -1,4 +1,4 @@
- [Visit OpenAI](https://www.openai.com)
+ [NOAVA](https://www.openai.com)
 Voice activated personal assistant
 ==================================
 
