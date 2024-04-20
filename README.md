@@ -13,12 +13,16 @@ For prosjektets rapport (Skrevet på Norsk), se [./reports/report.md](./reports/
 ## Referanser
 For referanser brukt i prosjektet, se [./references/references.md](./references/references.md)
 
-# Kom i gang
+# Kjør lokalt
 
-## 1
+## 
 
-Lorem ipsum
-
+```
+cd src
+```
+```
+python app.py
+```
 
 ## 2
 
