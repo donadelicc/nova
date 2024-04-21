@@ -7,4 +7,5 @@ aswell as exploring how to integrate Opensai's API to assist the user.
 ## Report
 For prosjektets rapport (Skrevet på Norsk), se [./reports/report.md](./reports/report.md)
 
+## References
 For referanser brukt i prosjektet, se [./references/references.md](./references/references.md)
