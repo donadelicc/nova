@@ -6,7 +6,7 @@ aswell as exploring how to integrate Opensai's API to assist the user.
 
 ## Web App
 
-See the [Link Text]([https://github.com/donadelicc/nova/tree/web-app)]) branch for the web application of this voice activated chatbot
+See the [web-app]([https://github.com/donadelicc/nova/tree/web-app]) branch for the web application of this voice activated chatbot
 
 ## Report
 For prosjektets rapport (Skrevet på Norsk), se [./reports/report.md](./reports/report.md)
